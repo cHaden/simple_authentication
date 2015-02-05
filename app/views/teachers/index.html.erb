@@ -1,6 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Teachers</h1>
+<% if session[:logged_in] %>
+  <h1>Listing Parent's Email Addresses for TEACHER X</h1>
+<% else %>
+  <h1>Please enter your email and password</h1>
+
+  <!-- <%= form_for(Teacher.first) do |f| %> -->
+  <div class="field">
+    <%= f.label :teacher_email %><br>
+    <%= f.text_field :teacher_email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+  <%= params %>
+  <!-- <%= link_to 'Delete this item', @item, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+  <!-- <% end %> -->
+<% end %>
+
+<%= form_tag("/t", :method=>"post") do %>
+  <%= text_field_tag(:todo_text) %>
+  <%= submit_tag("Add todo", :class=>"btn") %>
+<% end %>
 
 <table>
   <thead>
